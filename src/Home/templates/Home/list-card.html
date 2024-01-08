@@ -1,0 +1,38 @@
+
+
+
+</script>
+<div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
+    {% if product.image %}<a href="{{ product.imageUrl }}">
+        <img class="w-full  md:w-64 rounded-lg sm:rounded-none sm:rounded-l-lg" src="{{ product.image.url }}" alt="{{ object.name }}">
+    </a>
+    {% endif %}
+    <div class="p-5">
+        <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <a href="#">{{ product.name }}</a>
+        </h3>
+        <span class="text-gray-500 dark:text-gray-400">{{ product.price }}</span>
+        <div>
+        <span class="text-gray-500 dark:text-gray-400">{{ product.body }}</span>
+    </div>
+        <a href="{% url 'product_detail' product.id %}"> 
+        <input type="button" value ="view product"class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
+            </input></a>
+            {%if request.user.is_staff%}
+            <a href="{% url 'update_product' product.id %}"> 
+                <input type="button" value ="update product"class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
+                    </input></a>
+                    <a href="{% url 'delete_product' product.id %}"> 
+                        <input type="button" value ="delete product"class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
+                            </input></a>
+    {%endif%}   
+    {%if request.user.is_authenticated%}
+
+<a href="{%url 'add_to_cart' product.id %}">
+<button  data-product="{{product.id}}" data-action="add" value ="Add to Cart"class="update-cart text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
+    Add to Cart
+</button>
+</a>
+{%endif%}
+    </div>
+</div>

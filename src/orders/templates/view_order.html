@@ -1,0 +1,20 @@
+
+
+{% for order in orders %}
+
+    <h1>Order #{{ order.id }}</h1>
+    <h2>Customer: {{ order.customer }}</h2>
+    <h2>Order Date: {{ order.order_date }}</h2>
+    <h2>Order Total: {{ order.order_total }}</h2>
+    <h2>Order Status: {{ order.order_status }}</h2>
+    <h2>Order Items:</h2>
+    <ul>
+        {% for item in order.order_items %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'orders:edit_order' order.id %}">Edit Order</a>
+    <a href="{% url 'orders:delete_order' order.id %}">Delete Order</a>
+
+{% endfor %}
